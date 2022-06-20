@@ -3,26 +3,28 @@
 
 const diceImages = {
   'normal' : {
-    // 'critsuccess' : '<img src="systems/vtm5e/assets/images/normal-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
-    // 'success'     : '<img src="systems/vtm5e/assets/images/normal-success.png" alt="Normal Success" class="roll-img normal-dice" />',
-    // 'fail'        : '<img src="systems/vtm5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
-    // 'critfail'    : '<img src="systems/vtm5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
-    'critsuccess' : '<img src="systems/vtm5e/assets/images/mage-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
-    'success'     : '<img src="systems/vtm5e/assets/images/mage-success.png" alt="Normal Success" class="roll-img normal-dice" />',
-    'fail'        : '<img src="systems/vtm5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
-    'critfail'    : '<img src="systems/vtm5e/assets/images/mage-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+    // 'critsuccess' : '<img src="systems/mta5e/assets/images/normal-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
+    // 'success'     : '<img src="systems/mta5e/assets/images/normal-success.png" alt="Normal Success" class="roll-img normal-dice" />',
+    // 'fail'        : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+    // 'critfail'    : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+    'critsuccess' : '<img src="systems/mta5e/assets/images/mage-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
+    'success'     : '<img src="systems/mta5e/assets/images/mage-success.png" alt="Normal Success" class="roll-img normal-dice" />',
+    'fail'        : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+    'critfail'    : '<img src="systems/mta5e/assets/images/mage-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
   },
-  'hunger': {
-    'critsuccess' : '<img src="systems/vtm5e/assets/images/red-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
-    'success'     : '<img src="systems/vtm5e/assets/images/red-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
-    'fail'        : '<img src="systems/vtm5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
-    'critfail'    : '<img src="systems/vtm5e/assets/images/bestial-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
-  },
+  // 'hunger': {
   'quiet': {
-    'critsuccess' : '<img src="systems/vtm5e/assets/images/mage-messy-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
-    'success'     : '<img src="systems/vtm5e/assets/images/mage-messy-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
-    'fail'        : '<img src="systems/vtm5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
-    'critfail'    : '<img src="systems/vtm5e/assets/images/mage-messy-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
+    'critsuccess' : '<img src="systems/mta5e/assets/images/red-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
+    'success'     : '<img src="systems/mta5e/assets/images/red-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
+    'fail'        : '<img src="systems/mta5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
+    'critfail'    : '<img src="systems/mta5e/assets/images/bestial-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
+  },
+  // 'quiet': {
+  'hunger': {
+    'critsuccess' : '<img src="systems/mta5e/assets/images/mage-messy-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
+    'success'     : '<img src="systems/mta5e/assets/images/mage-messy-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
+    'fail'        : '<img src="systems/mta5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
+    'critfail'    : '<img src="systems/mta5e/assets/images/mage-messy-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
   },
 };
 const dieResultTypeMap = {
