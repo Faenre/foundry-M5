@@ -22,7 +22,7 @@ export class MageActorSheet extends GhoulActorSheet {
 
     return mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/mta5e/templates/actor/vampire-sheet.html',
+      template: 'systems/mta5e/templates/actor/mage-sheet.html',
       width: 800,
       height: 700,
       tabs: [{
