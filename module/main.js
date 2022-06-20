@@ -12,6 +12,7 @@ import { CoterieActorSheet } from './actor/coterie-actor-sheet.js'
 import { MortalActorSheet } from './actor/mortal-actor-sheet.js'
 import { GhoulActorSheet } from './actor/ghoul-actor-sheet.js'
 import { VampireActorSheet } from './actor/vampire-actor-sheet.js'
+import { MageActorSheet } from './actor/mage-actor-sheet.js'
 import {
   prepareSearchableSelection,
   prepareRouseShortcut,
@@ -28,7 +29,7 @@ const OWNED_PERMISSION = 3
 Hooks.once('init', async function () {
   console.log('Initializing Schrecknet...')
 
-  game.settings.register('vtm5e', 'worldVersion', {
+  game.settings.register('mta5e', 'worldVersion', {
     name: 'World Version',
     hint: 'Automatically upgrades data when the system.json is upgraded.',
     scope: 'world',
@@ -37,7 +38,7 @@ Hooks.once('init', async function () {
     type: String
   })
 
-  game.settings.register('vtm5e', 'useChatRoller', {
+  game.settings.register('mta5e', 'useChatRoller', {
     name: 'Chat Roller',
     hint: 'Display dice roller in chat window',
     scope: 'world',
@@ -46,7 +47,7 @@ Hooks.once('init', async function () {
     type: Boolean
   })
 
-  game.settings.register('vtm5e', 'chatRollerSortAbilities', {
+  game.settings.register('mta5e', 'chatRollerSortAbilities', {
     name: 'Sort Abilities in Chat Roller',
     hint: 'Sort abilities (Attributes, Skills, Disciplines) alphabetically in the chat roller. Disable to sort in the order on the character sheet (grouping physical, social, and mental).',
     scope: 'client',
@@ -55,7 +56,7 @@ Hooks.once('init', async function () {
     type: Boolean
   })
 
-  game.settings.register('vtm5e', 'automatedWillpower', {
+  game.settings.register('mta5e', 'automatedWillpower', {
     name: 'Willpower Damage On Willpower Reroll',
     hint: 'If enabled, using the Willpower Reroll (right click on a chat message) feature will deal willpower damage to the associated actor.',
     scope: 'client',
@@ -64,7 +65,7 @@ Hooks.once('init', async function () {
     type: Boolean
   })
 
-  game.settings.register('vtm5e', 'automatedRouse', {
+  game.settings.register('mta5e', 'automatedRouse', {
     name: 'Increase Hunger With Rouse Checks',
     hint: 'If enabled, rolling a rouse check and failing will automatically increase the hunger of the associated actor.',
     scope: 'client',
@@ -73,7 +74,7 @@ Hooks.once('init', async function () {
     type: Boolean
   })
 
-  game.settings.register('vtm5e', 'darkTheme', {
+  game.settings.register('mta5e', 'darkTheme', {
     name: 'Dark Theme',
     hint: 'Display sheets using a darker theme on a per-user basis.',
     scope: 'client',
@@ -105,28 +106,38 @@ Hooks.once('init', async function () {
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet)
 
-  Actors.registerSheet('vtm5e', VampireActorSheet, {
+  Actors.registerSheet('mta5e', VampireActorSheet, {
     label: 'Vampire Sheet',
     types: ['vampire', 'character'],
     makeDefault: true
   })
-  Actors.registerSheet('vtm5e', GhoulActorSheet, {
+  Actors.registerSheet('mta5e', GhoulActorSheet, {
     label: 'Ghoul Sheet',
     types: ['ghoul'],
     makeDefault: true
   })
-  Actors.registerSheet('vtm5e', MortalActorSheet, {
+  Actors.registerSheet('mta5e', MortalActorSheet, {
     label: 'Mortal Sheet',
     types: ['mortal'],
     makeDefault: true
   })
-  Actors.registerSheet('vtm5e', CoterieActorSheet, {
+  Actors.registerSheet('mta5e', MageActorSheet, {
+    label: 'Mage Sheet',
+    types: ['mage'],
+    makeDefault: true
+  })
+  Actors.registerSheet('mta5e', CoterieActorSheet, {
+    label: 'Coterie Sheet',
+    types: ['coterie'],
+    makeDefault: true
+  })
+  Actors.registerSheet('mta5e', CoterieActorSheet, {
     label: 'Coterie Sheet',
     types: ['coterie'],
     makeDefault: true
   })
   Items.unregisterSheet('core', ItemSheet)
-  Items.registerSheet('vtm5e', VampireItemSheet, {
+  Items.registerSheet('mta5e', VampireItemSheet, {
     label: 'Item Sheet',
     makeDefault: true
   })
@@ -213,8 +224,20 @@ Hooks.once('init', async function () {
     )
   })
 
+  Handlebars.registerHelper('visibleSpheres', function (spheres) {
+    return Object.keys(spheres).reduce(
+      (obj, key) => {
+        if (spheres[key].visible) {
+          obj[key] = spheres[key]
+        }
+        return obj
+      },
+      {}
+    )
+  })
+
   Handlebars.registerHelper('sortAbilities', function (unordered = {}) {
-    if (!game.settings.get('vtm5e', 'chatRollerSortAbilities')) {
+    if (!game.settings.get('mta5e', 'chatRollerSortAbilities')) {
       return unordered
     }
     return Object.keys(unordered).sort().reduce(
@@ -262,6 +285,25 @@ Hooks.once('init', async function () {
     }
     return disciplines[key]
   })
+
+  Handlebars.registerHelper('getSphereName', function (key, roll = false) {
+    const spheres = {
+      correspondence: 'MTA5E.Correspondence',
+      data: 'MTA5E.Data',
+      entropy: 'MTA5E.Entropy',
+      forces: 'MTA5E.Forces',
+      life: 'MTA5E.Life',
+      matter: 'MTA5E.Matter',
+      mind: 'MTA5E.Mind',
+      prime: 'MTA5E.Prime',
+      primal: 'MTA5E.PrimalUtility',
+      spirit: 'MTA5E.Spirit',
+      dimensionalscience: 'MTA5E.DimensionalScience',
+      time: 'MTA5E.Time',
+    }
+    return spheres[key]
+  })
+
 })
 
 Hooks.once('ready', async function () {
@@ -270,24 +312,24 @@ Hooks.once('ready', async function () {
 })
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
-  dice3d.addSystem({ id: 'vtm5e', name: 'VtM5e' }, true)
+  dice3d.addSystem({ id: 'mta5e', name: 'mta5e' }, true)
   dice3d.addDicePreset({
     type: 'dv',
     labels: [
-      'systems/vtm5e/assets/images/normal-fail-dsn.png',
-      'systems/vtm5e/assets/images/normal-fail-dsn.png',
-      'systems/vtm5e/assets/images/normal-fail-dsn.png',
-      'systems/vtm5e/assets/images/normal-fail-dsn.png',
-      'systems/vtm5e/assets/images/normal-fail-dsn.png',
-      'systems/vtm5e/assets/images/normal-success-dsn.png',
-      'systems/vtm5e/assets/images/normal-success-dsn.png',
-      'systems/vtm5e/assets/images/normal-success-dsn.png',
-      'systems/vtm5e/assets/images/normal-success-dsn.png',
-      'systems/vtm5e/assets/images/normal-crit-dsn.png'
+      'systems/mta5e/assets/images/normal-fail-dsn.png',
+      'systems/mta5e/assets/images/normal-fail-dsn.png',
+      'systems/mta5e/assets/images/normal-fail-dsn.png',
+      'systems/mta5e/assets/images/normal-fail-dsn.png',
+      'systems/mta5e/assets/images/normal-fail-dsn.png',
+      'systems/mta5e/assets/images/normal-success-dsn.png',
+      'systems/mta5e/assets/images/normal-success-dsn.png',
+      'systems/mta5e/assets/images/normal-success-dsn.png',
+      'systems/mta5e/assets/images/normal-success-dsn.png',
+      'systems/mta5e/assets/images/normal-crit-dsn.png'
     ],
     colorset: 'black',
     fontScale: 0.5,
-    system: 'vtm5e'
+    system: 'mta5e'
   })
   dice3d.addColorset({
     name: 'hunger',
@@ -307,31 +349,31 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addDicePreset({
     type: 'dh',
     labels: [
-      'systems/vtm5e/assets/images/bestial-fail-dsn.png',
-      'systems/vtm5e/assets/images/red-fail-dsn.png',
-      'systems/vtm5e/assets/images/red-fail-dsn.png',
-      'systems/vtm5e/assets/images/red-fail-dsn.png',
-      'systems/vtm5e/assets/images/red-fail-dsn.png',
-      'systems/vtm5e/assets/images/red-success-dsn.png',
-      'systems/vtm5e/assets/images/red-success-dsn.png',
-      'systems/vtm5e/assets/images/red-success-dsn.png',
-      'systems/vtm5e/assets/images/red-success-dsn.png',
-      'systems/vtm5e/assets/images/red-crit-dsn.png'
+      'systems/mta5e/assets/images/bestial-fail-dsn.png',
+      'systems/mta5e/assets/images/red-fail-dsn.png',
+      'systems/mta5e/assets/images/red-fail-dsn.png',
+      'systems/mta5e/assets/images/red-fail-dsn.png',
+      'systems/mta5e/assets/images/red-fail-dsn.png',
+      'systems/mta5e/assets/images/red-success-dsn.png',
+      'systems/mta5e/assets/images/red-success-dsn.png',
+      'systems/mta5e/assets/images/red-success-dsn.png',
+      'systems/mta5e/assets/images/red-success-dsn.png',
+      'systems/mta5e/assets/images/red-crit-dsn.png'
     ],
     colorset: 'hunger',
-    system: 'vtm5e'
+    system: 'mta5e'
   })
 })
 /* -------------------------------------------- */
 /*  Add chat dicebox                            */
 /* -------------------------------------------- */
 Hooks.on('renderSidebarTab', (app, html) => {
-  if (!game.settings.get('vtm5e', 'useChatRoller')) {
+  if (!game.settings.get('mta5e', 'useChatRoller')) {
     return
   }
 
   const $chatForm = html.find('#chat-form')
-  const template = 'systems/vtm5e/templates/ui/tray.html'
+  const template = 'systems/mta5e/templates/ui/tray.html'
   const ownedCharacters = Array.from(game.actors)
     .filter((c) => c.permission === OWNED_PERMISSION)
   const options = {

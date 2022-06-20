@@ -9,7 +9,7 @@ import { rollDice } from './roll-dice.js'
  * @extends {GhoulActorSheet}
  */
 
-export class MageActorSheet extends MortalActorSheet {
+export class MageActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
@@ -22,7 +22,7 @@ export class MageActorSheet extends MortalActorSheet {
 
     return mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/actor/vampire-sheet.html',
+      template: 'systems/mta5e/templates/actor/vampire-sheet.html',
       width: 800,
       height: 700,
       tabs: [{
@@ -41,8 +41,8 @@ export class MageActorSheet extends MortalActorSheet {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/actor/limited-sheet.html'
-    return 'systems/vtm5e/templates/actor/mage-sheet.html'
+    if (!game.user.isGM && this.actor.limited) return 'systems/mta5e/templates/actor/limited-sheet.html'
+    return 'systems/mta5e/templates/actor/mage-sheet.html'
   }
 
   /* -------------------------------------------- */
