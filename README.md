@@ -4,9 +4,9 @@
 [![MIT License]][MIT URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
-This system is for playing Vampire the Masquerade 5th edition on the Foundry Virtual Tabletop System.
+This system is for playing Mage: the Ascension 5th edition on the Foundry Virtual Tabletop System.
 
-Licensed VtM5e materials will NOT be provided (list of disciplines, clans, etc.) as this is a system provided for public use for free.
+Licensed MtA materials will NOT be provided as this is a system provided for public use for free.
 
 There is integration with Dice So Nice! To roll regular vampire dice, roll `1dv`. To roll Hunger dice, roll `1dh`. Replace the 1s with however many dice you want to roll for each type.
 
@@ -42,6 +42,7 @@ Huge thanks to these folks for their contributions:
 * Adding blood potency bonus to discipline rolls by [MarkusOzgur]
 * Dicebox by [crcroberts]
 * Feedback and fixes by [eisenfuchs]
+* Edited to support Mage: the Ascension by Faenre#3434
 
 [Foundry Shield 9]: https://img.shields.io/badge/Foundry-9-informational
 [Foundry URL]: https://foundryvtt.com

@@ -1,12 +1,12 @@
 {
-  "name": "vtm5e",
-  "title": "Vampire the Masquerade 5e",
-  "description": "Vampire 5e system for Foundry VTT!",
-  "version": "1.8.2",
+  "name": "mta5e",
+  "title": "Mage the Ascension 5e",
+  "description": "Mage 5e system for Foundry VTT!",
+  "version": "0.0.1",
   "minimumCoreVersion": "9.0",
   "compatibleCoreVersion": "9.0",
   "templateVersion": 4,
-  "author": "Ray Ji",
+  "author": "Nicole",
   "esmodules": ["module/main.js"],
   "styles": ["css/vtm5e.css"],
   "scripts": [],
@@ -16,44 +16,13 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
-    },
-    {
-      "lang": "fr",
-      "name": "French",
-      "path": "lang/fr.json"
-    },
-    {
-      "lang": "pt-BR",
-      "name": "Brazilian Portuguese",
-      "path": "lang/pt-BR.json"
-    },
-    {
-      "lang": "es",
-      "name": "Spanish",
-      "path": "lang/es.json"
-    },
-    {
-      "lang": "de",
-      "name": "German",
-      "path": "lang/de.json"
-    },
-    {
-      "lang": "it",
-      "name": "Italian",
-      "path": "lang/it.json"
-    },
-	{
-      "lang": "pl",
-      "name": "Polish",
-      "path": "lang/pl.json"
     }
   ],
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "",
   "secondaryTokenAttribute": "",
-  "url": "https://github.com/Rayji96/foundry-V5/",
-  "manifest": "https://raw.githubusercontent.com/Rayji96/foundry-V5/main/system.json",
-  "download": "https://github.com/Rayji96/foundry-V5/archive/foundryvtt_v5_v1.8.2.zip",
+  "url": "https://github.com/Faenre/foundry-M5",
+  "manifest": "https://raw.githubusercontent.com/Faenre/foundry-M5/main/system.json",
   "license": "LICENSE.txt"
 }
