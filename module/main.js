@@ -83,7 +83,7 @@ Hooks.once('init', async function () {
     type: Boolean
   })
 
-  game.vtm5e = {
+  game.mta5e = {
     VampireActor,
     VampireItem,
     rollItemMacro
@@ -536,7 +536,7 @@ async function createVampireMacro (data, slot) {
   const item = data.data
 
   // Create the macro command
-  const command = `game.vtm5e.rollItemMacro("${item.name}");`
+  const command = `game.mta5e.rollItemMacro("${item.name}");`
   let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command))
   if (!macro) {
     macro = await Macro.create({
@@ -544,7 +544,7 @@ async function createVampireMacro (data, slot) {
       type: 'script',
       img: item.img,
       command: command,
-      flags: { 'vtm5e.itemMacro': true }
+      flags: { 'mta5e.itemMacro': true }
     })
   }
   game.user.assignHotbarMacro(macro, slot)
