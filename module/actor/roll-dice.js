@@ -173,7 +173,7 @@ function diceImages(type, dice) {
   let images = diceSet[type];
 
   dice.forEach((die) => {
-    let resultType = dieResultTypeMap[die.value];
+    let resultType = dieResultTypeMap[die.result];
     string += images[resultType];
   });
   string += '<br>'
