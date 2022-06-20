@@ -13,16 +13,16 @@ export class VampireActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['vtm5e', 'sheet', 'actor', 'vampire']
+    const classList = ['mta5e', 'sheet', 'actor', 'vampire']
 
     // If the user's enabled darkmode, then push it to the class list
-    if (game.settings.get('vtm5e', 'darkTheme')) {
+    if (game.settings.get('mta5e', 'darkTheme')) {
       classList.push('dark-theme')
     }
 
     return mergeObject(super.defaultOptions, {
       classes: classList,
-      template: 'systems/vtm5e/templates/actor/vampire-sheet.html',
+      template: 'systems/mta5e/templates/actor/vampire-sheet.html',
       width: 800,
       height: 700,
       tabs: [{
@@ -40,8 +40,8 @@ export class VampireActorSheet extends GhoulActorSheet {
 
   /** @override */
   get template () {
-    if (!game.user.isGM && this.actor.limited) return 'systems/vtm5e/templates/actor/limited-sheet.html'
-    return 'systems/vtm5e/templates/actor/vampire-sheet.html'
+    if (!game.user.isGM && this.actor.limited) return 'systems/mta5e/templates/actor/limited-sheet.html'
+    return 'systems/mta5e/templates/actor/vampire-sheet.html'
   }
 
   /* -------------------------------------------- */

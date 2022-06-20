@@ -131,11 +131,6 @@ Hooks.once('init', async function () {
     types: ['coterie'],
     makeDefault: true
   })
-  Actors.registerSheet('mta5e', CoterieActorSheet, {
-    label: 'Coterie Sheet',
-    types: ['coterie'],
-    makeDefault: true
-  })
   Items.unregisterSheet('core', ItemSheet)
   Items.registerSheet('mta5e', VampireItemSheet, {
     label: 'Item Sheet',

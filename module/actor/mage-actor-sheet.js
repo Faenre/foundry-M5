@@ -13,10 +13,10 @@ export class MageActorSheet extends GhoulActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['vtm5e', 'sheet', 'actor', 'mage']
+    const classList = ['mta5e', 'sheet', 'actor', 'mage']
 
     // If the user's enabled darkmode, then push it to the class list
-    if (game.settings.get('vtm5e', 'darkTheme')) {
+    if (game.settings.get('mta5e', 'darkTheme')) {
       classList.push('dark-theme')
     }
 
