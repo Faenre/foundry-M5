@@ -1,7 +1,7 @@
 
 /* global ChatMessage, Roll, game */
 
-const images = {
+const diceImages = {
   'normal' : {
     // 'critsuccess' : '<img src="systems/vtm5e/assets/images/normal-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
     // 'success'     : '<img src="systems/vtm5e/assets/images/normal-success.png" alt="Normal Success" class="roll-img normal-dice" />',
@@ -52,15 +52,18 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
 
   // Define special dice
   let blackDice = numDice;
+
   let hungerDice = 0;
   if (useHunger) {
-    hungerDice = Math.min(actor.data.data.hunger.value, blackDice);
+    let hunger = actor.data.data.hunger || 0;
+    if (hunger) hungerDice = Math.min(actor.data.data.hunger.value, blackDice);
     blackDice -= hungerDice;
   }
 
   let quietDice = 0;
   if (useQuiet) {
-    quietDice = Math.min(actor.data.data.quiet.value, blackDice);
+    let quiet = actor.data.data.quiet || 0;
+    if (quiet) quietDice = Math.min(actor.data.data.quiet.value, blackDice);
     blackDice -= quietDice;
   }
 
@@ -148,9 +151,9 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
   // Total number of successes
   chatMessage += `<p class="roll-label result-success">${game.i18n.localize('VTM5E.Successes')}: ${totalSuccess} ${difficultyResult}</p>`;
 
-  // chatMessage += diceImages('normal', results[0]);
-  // chatMessage += diceImages('hunger', results[1]);
-  // chatMessage += diceImages('quiet',  results[2]);
+  chatMessage += resultsToImages('normal', results[0]);
+  chatMessage += resultsToImages('hunger', results[1]);
+  chatMessage += resultsToImages('quiet',  results[2]);
 
   // Post the message to the chat
   roll.toMessage({
@@ -168,15 +171,15 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
   if (subtractWillpower) reduceWillpower(actor);
 }
 
-function diceImages(type, dice) {
+function resultsToImages(type, dice) {
   let string = '';
-  let images = diceSet[type];
+  let images = diceImages[type];
 
   dice.forEach((die) => {
     let resultType = dieResultTypeMap[die.result];
     string += images[resultType];
   });
-  string += '<br>'
+  if (string) string += '<br>'
 
   return string;
 }
