@@ -148,9 +148,9 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
   // Total number of successes
   chatMessage += `<p class="roll-label result-success">${game.i18n.localize('VTM5E.Successes')}: ${totalSuccess} ${difficultyResult}</p>`;
 
-  chatMessage += diceImages('normal', results[0]);
-  chatMessage += diceImages('hunger', results[1]);
-  chatMessage += diceImages('quiet',  results[2]);
+  // chatMessage += diceImages('normal', results[0]);
+  // chatMessage += diceImages('hunger', results[1]);
+  // chatMessage += diceImages('quiet',  results[2]);
 
   // Post the message to the chat
   roll.toMessage({
