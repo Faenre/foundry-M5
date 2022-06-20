@@ -36,7 +36,7 @@ const dieResultTypeMap = {
   3:  'fail',
   2:  'fail',
   1:  'critfail',
-}
+};
 
 // Function to roll dice
 // numDice = Number of dice the function will roll
@@ -66,9 +66,7 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
 
   // Roll defining and evaluating
   const dicePools = [blackDice, hungerDice, quietDice];
-  const rollText = dicePools
-    .map((count) => count + 'dhcs>5')
-    .join(' + ');
+  const rollText = dicePools.map((count) => count + 'dhcs>5').join(' + ');
 
   const roll = new Roll(rollText, actor.data.data);
   await roll.evaluate();
@@ -112,9 +110,9 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
     }
   };
   // Track number of hunger diceroll results
-  results[2].forEach(redDiceFunc);
+  results[1].forEach(redDiceFunc);
   // Track number of quiet dice results
-  results[4].forEach(redDiceFunc);
+  results[2].forEach(redDiceFunc);
 
   // Success canculating
   let totalCritSuccess = Math.floor((critSuccess + hungerCritSuccess) / 2);
@@ -151,8 +149,8 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
   chatMessage += `<p class="roll-label result-success">${game.i18n.localize('VTM5E.Successes')}: ${totalSuccess} ${difficultyResult}</p>`;
 
   chatMessage += diceImages('normal', results[0]);
-  chatMessage += diceImages('hunger', results[2]);
-  chatMessage += diceImages('quiet',  results[4]);
+  chatMessage += diceImages('hunger', results[1]);
+  chatMessage += diceImages('quiet',  results[2]);
 
   // Post the message to the chat
   roll.toMessage({
