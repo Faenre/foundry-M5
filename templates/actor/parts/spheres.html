@@ -1,0 +1,118 @@
+<div class="tab spheres" data-group="primary" data-tab="spheres">
+    <div class="resource flexrow grid grid-2col">
+        <div class="flex-group-center">
+            <label class="resource-label">{{localize "MTA5E.Arete"}}: </label>
+            <div class="resource-value" data-value="{{data.data.avatar.arete}}" data-name="data.avatar.arete">
+                <span class="resource-value-empty"></span>
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+        <div class="flex-group-center flexrow">
+            <label class="resource-label">{{localize "MTA5E.Essence"}}: </label>
+            <input type="text" name="data.avatar.essence" value="{{data.data.avatar.essence}}" />
+        </div>
+    </div>
+    <ol class="items-list">
+        <!-- Header of the spheres lists -->
+        <li class="item flexrow item-header">
+            <div class="item-name">{{localize "MTA5E.Name"}}</div>
+            <div class="item-name header-level">{{localize "MTA5E.Level"}}</div>
+            <!-- Item controls for adding new sphere lists -->
+            <div class="item-controls">
+                <a class="item-control sphere-create" title="{{localize 'MTA5E.AddSphere'}}">
+                    <i class="fas fa-plus"></i>
+                    {{localize "MTA5E.AddSphere"}}
+                </a>
+            </div>
+        </li>
+        <!-- Iterate through each of the sphere lists -->
+        {{#each data.data.sphere as |sphere key|}}
+            {{#if sphere.visible}}
+                <li class="flexrow item-header">
+                    <div class="item-name collapsible">
+                        {{localize sphere.name}}
+                    </div>
+                    <!-- All non-ritual/ceremony powers need dots displayed in the middle -->
+                    {{#if (and (ne key "rituals") (ne key "ceremonies"))}}
+                        <div class="resource-value" data-value="{{sphere.value}}" data-name="data.spheres.{{key}}.value">
+                            <!-- Empty box (for setting back to 0), and then iterate through the rest of the sphere dots -->
+                            <span class="resource-value-empty"></span>
+                            {{#numLoop 5}}
+                                <span class="resource-value-step" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    {{/if}}
+                    <!-- Item controls for sphere sections -->
+                    <div class="item-controls">
+                        <!-- Add new sphere power -->
+                        <a class="item-control item-create" title="{{localize 'MTA5E.AddPower'}}" data-type="power" data-sphere="{{key}}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <!-- Icon to roll the sphere with an attribute -->
+                        <a class="vrollable sphere-dice" title="{{localize 'MTA5E.Roll'}}" data-roll="{{sphere.value}}" data-label="{{key}}">
+                            <i class="fas fa-dice-d20"></i>
+                        </a>
+                        <!-- Icon to show the sphere description to the chat-->
+                        <a class="item-control sphere-chat" title="{{localize 'VTM5E.ShowToChat'}}" data-type="power" data-sphere="{{key}}">
+                            <i class="fas fa-comment-alt"></i>
+                        </a>
+                        <!-- Icon to delete the sphere (as long as it doesn't have any powers) -->
+                        <a class="item-control sphere-delete" title="{{localize 'VTM5E.Delete'}}" data-sphere="{{key}}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </li>
+                <!-- sphere description -->
+                <div class="collapsible-content">
+                    <textarea class="sphere-description" name="data.spheres.{{key}}.description">{{sphere.description}}</textarea>
+                </div>
+                <!-- Iterate through each of the sphere powers -->
+                {{#each (lookup ../actor.spheres_list key) as |item id|}}
+                    <li class="item flexcol" data-item-id="{{item._id}}">
+                        <div class="flexrow">
+                            <!-- Whether the button is clickable or not to post the power in chat -->
+                            {{#if item.data.rollable}}
+                                <div class="item-image power-rollable" data-id="{{item._id}}" data-use-hunger="1">
+                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
+                                </div>
+                            {{else}}
+                                <div class="item-image" data-id="{{item._id}}">
+                                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="{{item.name}}"/>
+                                </div>
+                            {{/if}}
+                            <!-- sphere power name -->
+                            <h4 class="item-name collapsible">{{item.name}}</h4>
+                            <!-- Item controls for sphere powers -->
+                            <div class="item-controls">
+                                <!-- Icon to roll the power's rouse check, if applicable -->
+                                {{#if item.data.rouse}}
+                                    <a class="item-control item-rouse" title="{{localize 'VTM5E.RollRouse'}}" data-roll="{{sphere.value}}">
+                                        <i class="fas fa-dice-d20"></i>
+                                    </a>
+                                {{/if}}
+                                <!-- Icon to edit the power-->
+                                <a class="item-control item-edit" title="{{localize 'VTM5E.Edit'}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <!-- Icon to display the power in chat -->
+                                <a class="item-control item-chat" title="{{localize 'VTM5E.ShowToChat'}}">
+                                    <i class="fas fa-comment-alt"></i>
+                                </a>
+                                <!-- Icon to delete the power -->
+                                <a class="item-control item-delete" title="{{localize 'VTM5E.Delete'}}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Power description, expandable by a collapse -->
+                        <div class="collapsible-content">
+                            {{{item.data.description}}}
+                        </div>
+                    </li>
+                {{/each}}
+            {{/if}}
+        {{/each}}
+    </ol>
+</div>

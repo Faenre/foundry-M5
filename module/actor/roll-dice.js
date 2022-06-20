@@ -2,25 +2,25 @@
 /* global ChatMessage, Roll, game */
 
 const diceImages = {
-  'normal' : {
-    // 'critsuccess' : '<img src="systems/mta5e/assets/images/normal-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
-    // 'success'     : '<img src="systems/mta5e/assets/images/normal-success.png" alt="Normal Success" class="roll-img normal-dice" />',
-    // 'fail'        : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
-    // 'critfail'    : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+  'normal': {
+    'critsuccess' : '<img src="systems/mta5e/assets/images/normal-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
+    'success'     : '<img src="systems/mta5e/assets/images/normal-success.png" alt="Normal Success" class="roll-img normal-dice" />',
+    'fail'        : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+    'critfail'    : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
+  },
+  'mage': {
     'critsuccess' : '<img src="systems/mta5e/assets/images/mage-crit.png" alt="Normal Crit" class="roll-img normal-dice" />',
     'success'     : '<img src="systems/mta5e/assets/images/mage-success.png" alt="Normal Success" class="roll-img normal-dice" />',
     'fail'        : '<img src="systems/mta5e/assets/images/normal-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
     'critfail'    : '<img src="systems/mta5e/assets/images/mage-fail.png" alt="Normal Fail" class="roll-img normal-dice" />',
   },
-  // 'hunger': {
-  'quiet': {
+  'hunger': {
     'critsuccess' : '<img src="systems/mta5e/assets/images/red-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
     'success'     : '<img src="systems/mta5e/assets/images/red-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
     'fail'        : '<img src="systems/mta5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
     'critfail'    : '<img src="systems/mta5e/assets/images/bestial-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
   },
-  // 'quiet': {
-  'hunger': {
+  'quiet': {
     'critsuccess' : '<img src="systems/mta5e/assets/images/mage-messy-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
     'success'     : '<img src="systems/mta5e/assets/images/mage-messy-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
     'fail'        : '<img src="systems/mta5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
@@ -48,7 +48,7 @@ const dieResultTypeMap = {
 // useHunger = Will roll hunger dice, if true
 // increaseHunger = Will increase the actor's hunger if no successes are rolled, if true
 // subtractWillpower = Subtracts a point of willpower, always, if true
-export async function rollDice (numDice, actor, label = '', difficulty = 0, useHunger = true, increaseHunger = false, subtractWillpower = false, useQuiet = false) {
+export async function rollDice (numDice, actor, label = '', difficulty = 0, useHunger = true, increaseHunger = false, subtractWillpower = false, imageSet='normal', useQuiet = false) {
   increaseHunger = increaseHunger && game.settings.get('vtm5e', 'automatedRouse');
   subtractWillpower = subtractWillpower && game.settings.get('vtm5e', 'automatedWillpower');
 
@@ -153,7 +153,7 @@ export async function rollDice (numDice, actor, label = '', difficulty = 0, useH
   // Total number of successes
   chatMessage += `<p class="roll-label result-success">${game.i18n.localize('VTM5E.Successes')}: ${totalSuccess} ${difficultyResult}</p>`;
 
-  chatMessage += resultsToImages('normal', results[0]);
+  chatMessage += resultsToImages(imageSet, results[0]);
   chatMessage += resultsToImages('hunger', results[1]);
   chatMessage += resultsToImages('quiet',  results[2]);
 
