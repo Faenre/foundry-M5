@@ -1,0 +1,31 @@
+<div class="tab options" data-group="primary" data-tab="options">
+    <div class="resource flexrow grid grid-6col">
+        <div class="resource flex-group-center">
+            <label for="data.data.spheres.correspondence.useAlt" class="resource-label">{{localize "MTA5E.EnableData"}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="checkbox" name="data.spheres.correspondence.useAlt" value="{{data.data.spheres.correspondence.useAlt}}" data-dtype="Boolean" {{#if data.data.spheres.correspondence.useAlt}} checked {{/if}}/>
+            </div>
+        </div>
+        <div class="resource flex-group-center">
+            <label for="data.data.spheres.spirit.useAlt" class="resource-label">{{localize "MTA5E.EnableDimensionalScience"}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="checkbox" name="data.spheres.spirit.useAlt" value="{{data.data.spheres.spirit.useAlt}}" data-dtype="Boolean" {{#if data.data.spheres.spirit.useAlt}} checked {{/if}}/>
+            </div>
+        </div>
+        <div class="resource flex-group-center">
+            <label for="data.data.spheres.prime.useAlt" class="resource-label">{{localize "MTA5E.EnablePrimalUtility"}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="checkbox" name="data.spheres.prime.useAlt" value="{{data.data.spheres.prime.useAlt}}" data-dtype="Boolean" {{#if data.data.spheres.prime.useAlt}} checked {{/if}}/>
+            </div>
+        </div>
+
+        {{#each data.data.options as |option key|}}
+        <div class="resource flex-group-center">
+            <label for="data.data.options.{{key}}.value" class="resource-label">{{localize option.name}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="checkbox" name="data.options.{{key}}.value" value="{{option.value}}" data-dtype="Boolean" {{#if option.value}} checked {{/if}}/>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

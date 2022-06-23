@@ -6,18 +6,24 @@
             <input type="text" name="data.headers.concept" value="{{data.data.headers.concept}}" />
         </div>
         <div class="flex-group-center">
+            <label class="resource-label">{{localize "VTM5E.Ambition"}}</label>
+            <input type="text" name="data.headers.ambition" value="{{data.data.headers.ambition}}" />
+        </div>
+        <div class="flex-group-center">
+            <label class="resource-label">{{localize "MTA5E.Faction"}}</label>
+            <input type="text" name="data.headers.faction" value="{{data.data.headers.faction}}" />
+        </div>
+        <div class="flex-group-center">
             <label class="resource-label">{{localize "VTM5E.Chronicle"}}</label>
             <input type="text" name="data.headers.chronicle" value="{{data.data.headers.chronicle}}" />
         </div>
         <div class="flex-group-center">
-            <label class="resource-label">{{localize "VTM5E.Ambition"}}</label>
-            <input type="text" name="data.headers.ambition" value="{{data.data.headers.ambition}}" />
-        </div>
-    </div>
-    <div class="resource flexrow grid grid-3col">
-        <div class="flex-group-center">
             <label class="resource-label">{{localize "VTM5E.Desire"}}</label>
             <input type="text" name="data.headers.desire" value="{{data.data.headers.desire}}" />
+        </div>
+        <div class="flex-group-center">
+            <label class="resource-label">{{localize "MTA5E.Sect"}}</label>
+            <input type="text" name="data.headers.sect" value="{{data.data.headers.sect}}" />
         </div>
         {{#if data.data.clan.value}}
         <div class="flex-group-center">
@@ -29,8 +35,14 @@
             <input type="text" name="data.headers.generation" value="{{data.data.headers.generation}}" />
         </div>
         {{/if}}
-    </div> 
-    <div class="resource flexrow grid grid-3col" style="min-height: 264px;">
+        {{#if data.data.avatar}}
+        <div class="flex-group-center flexrow">
+            <label class="resource-label">{{localize "MTA5E.Essence"}}: </label>
+            <input type="text" name="data.avatar.essence" value="{{data.data.avatar.essence}}" />
+        </div>
+        {{/if}}
+    </div>
+    <!--<div class="resource flexrow grid grid-3col" style="min-height: 264px;">
         <div class="flex-group-left">
             <div class="flex-center">
                 <label class="resource-label ">{{localize "VTM5E.ChronicleTenets"}}</label>
@@ -57,7 +69,7 @@
             </div>
         </div>
         {{/if}}
-    </div>
+    </div>-->
     {{/if}}
     {{#if isCharacter}}
     <div class="resource flexrow grid grid-2col" style="min-height: 264px;"> 

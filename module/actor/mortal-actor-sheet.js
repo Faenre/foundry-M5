@@ -13,7 +13,7 @@ export class MortalActorSheet extends CoterieActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['mta5e', 'sheet', 'actor', 'mortal']
+    const classList = ['vtm5e', 'sheet', 'actor', 'mortal']
 
     // If the user's enabled darkmode, then push it to the class list
     if (game.settings.get('mta5e', 'darkTheme')) {
@@ -38,6 +38,7 @@ export class MortalActorSheet extends CoterieActorSheet {
     this.isCharacter = true;
     this.hunger = false;
     this.quiet = false;
+    this.imageSet = 'mage';
   }
 
   /** @override */
@@ -168,7 +169,12 @@ export class MortalActorSheet extends CoterieActorSheet {
           const abilityVal = this.actor.data.data.abilities[ability].value
           const abilityName = game.i18n.localize(this.actor.data.data.abilities[ability].name)
           const numDice = abilityVal + parseInt(dataset.roll) + modifier
-          rollDice(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty, this.hunger)
+          rollDice(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty,
+          {
+            useHunger: this.hunger,
+            useQuiet: this.quiet,
+            imageSet: this.imageSet
+            });
           // this._vampireRoll(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty)
         }
       },
@@ -200,7 +206,14 @@ export class MortalActorSheet extends CoterieActorSheet {
     const subtractWillpower = dataset.subtractWillpower
     const numDice = dataset.roll
 
-    rollDice(numDice, this.actor, `${dataset.label}`, 0, useHunger, increaseHunger, subtractWillpower)
+    rollDice(numDice, this.actor, `${dataset.label}`, 0,
+      {
+        useHunger: useHunger,
+        increaseHunger: increaseHunger,
+        subtractWillpower: subtractWillpower,
+        useQuiet: this.useQuiet,
+        imageSet: this.imageSet
+      });
   }
 
   _onRollWithMod (event) {
@@ -232,7 +245,13 @@ export class MortalActorSheet extends CoterieActorSheet {
           const modifier = parseInt(html.find('#inputMod')[0].value || 0)
           const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
           const numDice = parseInt(dataset.roll) + modifier
-          rollDice(numDice, this.actor, `${dataset.label}`, difficulty, useHunger, increaseHunger, subtractWillpower)
+          rollDice(numDice, this.actor, `${dataset.label}`, difficulty,
+            {
+              useHunger: useHunger,
+              increaseHunger: increaseHunger,
+              subtractWillpower: subtractWillpower,
+              imageSet: this.imageSet
+            });
         }
       },
       cancel: {
@@ -262,7 +281,12 @@ export class MortalActorSheet extends CoterieActorSheet {
       const dice1 = this.actor.data.data.abilities[dataset.dice1.toLowerCase()].value
       const dice2 = this.actor.data.data.skills[dataset.dice2.toLowerCase()].value
       const dicePool = dice1 + dice2
-      rollDice(dicePool, this.actor, `${dataset.name}`, 0, this.hunger)
+      rollDice(dicePool, this.actor, `${dataset.name}`, 0,
+        {
+          useHunger: this.hunger,
+          useQuiet: this.quiet,
+          imageSet: this.imageSet
+        });
     }
   }
 

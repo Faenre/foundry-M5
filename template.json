@@ -1,23 +1,45 @@
 {
   "Actor": {
-    "types": ["character", "vampire", "ghoul", "mortal", "coterie"],
+    "types": [
+      "character",
+      "vampire",
+      "ghoul",
+      "mortal",
+      "coterie",
+      "mage"
+    ],
     "templates": {
       "base": {
         "biography": "",
         "appearance": "",
         "equipment": "",
         "notes": "",
-        "headers":{
-          "concept":"",
-          "chronicle":"",
-          "ambition":"",
-          "desire":"",
-          "touchstones":"",
-          "tenets":""
+        "headers": {
+          "concept": "",
+          "chronicle": "",
+          "ambition": "",
+          "desire": "",
+          "touchstones": "",
+          "tenets": "",
+          "faction": "",
+          "sect": ""
         },
         "exp": {
           "value": 0,
-          "max": 0
+          "max": 0,
+          "expenses": "",
+          "bank1": {
+            "value": 0,
+            "max": 0
+          },
+          "bank2": {
+            "value": 0,
+            "max": 0
+          },
+          "bank3": {
+            "value": 0,
+            "max": 0
+          }
         },
         "humanity": {
           "value": 0,
@@ -26,6 +48,7 @@
         "health": {
           "aggravated": 0,
           "superficial": 0,
+          "lethal": 0,
           "max": 5
         },
         "willpower": {
@@ -283,16 +306,110 @@
             "visible": false
           }
         }
+      },
+      "awakened": {
+        "spheres": {
+          "correspondence": {
+            "name": "MTA5E.Correspondence",
+            "altname": "MTA5E.Data",
+            "useAlt": false,
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "entropy": {
+            "name": "MTA5E.Entropy",
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "forces": {
+            "name": "MTA5E.Forces",
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "life": {
+            "name": "MTA5E.Life",
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "matter": {
+            "name": "MTA5E.Matter",
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "mind": {
+            "name": "MTA5E.Mind",
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "prime": {
+            "name": "MTA5E.Prime",
+            "altname": "MTA5E.PrimalUtility",
+            "useAlt": false,
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "spirit": {
+            "name": "MTA5E.Spirit",
+            "altname": "MTA5E.DimensionalScience",
+            "useAlt": false,
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          },
+          "time": {
+            "name": "MTA5E.Time",
+            "description": "",
+            "value": 0,
+            "powers": [],
+            "visible": false
+          }
+        },
+        "options": {
+          "technocracy": {
+            "value": false,
+            "name": "MTA5E.IsTechnocrat"
+          }
+        },
+        "quiet": {
+          "value": 1
+        },
+        "magika": {
+          "quintessence": 0,
+          "paradox": 0,
+          "permparadox": 0
+        },
+        "avatar": {
+          "arete": 0,
+          "essence": "",
+          "concept": ""
+        }
       }
     },
-   
     "character": {
-      "templates": ["base","disciplines"],
-      "headers":{
-        "predator":"",
-        "sire":"",
-        "generation":"",
-        "bane":""
+      "templates": [
+        "base",
+        "disciplines"
+      ],
+      "headers": {
+        "predator": "",
+        "sire": "",
+        "generation": "",
+        "bane": ""
       },
       "blood": {
         "potency": 0,
@@ -306,12 +423,15 @@
       }
     },
     "vampire": {
-      "templates": ["base","disciplines"],
-      "headers":{
-        "predator":"",
-        "sire":"",
-        "generation":"",
-        "bane":""
+      "templates": [
+        "base",
+        "disciplines"
+      ],
+      "headers": {
+        "predator": "",
+        "sire": "",
+        "generation": "",
+        "bane": ""
       },
       "blood": {
         "potency": 0,
@@ -325,37 +445,58 @@
       }
     },
     "ghoul": {
-      "templates": ["base","disciplines"],
-      "headers":{
-        "domitor":""
+      "templates": [
+        "base",
+        "disciplines"
+      ],
+      "headers": {
+        "domitor": ""
       }
     },
     "mortal": {
-      "templates": ["base"]
+      "templates": [
+        "base"
+      ]
     },
-    "coterie" : {
+    "mage": {
+      "templates": [
+        "base",
+        "awakened"
+      ]
+    },
+    "coterie": {
       "biography": "",
       "equipment": "",
       "notes": "",
-      "headers":{
+      "headers": {
         "concept": ""
       }
     }
   },
   "Item": {
-    "types": ["feature", "power", "specialty", "boon", "customRoll"],
+    "types": [
+      "feature",
+      "power",
+      "specialty",
+      "boon",
+      "customRoll"
+    ],
     "templates": {
       "base": {
         "description": ""
       }
     },
     "feature": {
-      "templates": ["base"],
-      "featuretype":"merit",
+      "templates": [
+        "base"
+      ],
+      "featuretype": "merit",
       "points": 0
     },
     "power": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "discipline": "rituals",
       "duration": "",
       "level": 1,
@@ -368,17 +509,23 @@
       "rouse": false
     },
     "specialty": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "skill": "athletics"
     },
     "boon": {
-      "templates": ["base"],
+      "templates": [
+        "base"
+      ],
       "boontype": "Trivial"
     },
     "customRoll": {
-      "templates": ["base"],
-      "dice1" : "",
-      "dice2" : ""
+      "templates": [
+        "base"
+      ],
+      "dice1": "",
+      "dice2": ""
     }
   }
 }

@@ -1,5 +1,31 @@
 <div class="tab other" data-group="primary" data-tab="other">
-    <div class="resource flexrow grid grid-2col" style="min-height: 264px;"> 
+    <div class="resource flexrow grid grid-3col">
+        <div class="resource flex-group-center exp">
+            <label for="data.data.exp" class="resource-label">{{localize "MTA5E.ExpBank1"}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="number" name="data.exp.bank1.value" value="{{data.data.exp.bank1.value}}" data-dtype="Number" />
+                /
+                <input type="number" name="data.exp.bank1.max" value="{{data.data.exp.bank1.max}}" data-dtype="Number" />
+            </div>
+        </div>
+        <div class="resource flex-group-center exp">
+            <label for="data.data.exp" class="resource-label">{{localize "MTA5E.ExpBank2"}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="number" name="data.exp.bank2.value" value="{{data.data.exp.bank2.value}}" data-dtype="Number" />
+                /
+                <input type="number" name="data.exp.bank2.max" value="{{data.data.exp.bank2.max}}" data-dtype="Number" />
+            </div>
+        </div>
+        <div class="resource flex-group-center exp">
+            <label for="data.data.exp" class="resource-label">{{localize "MTA5E.ExpBank3"}}</label>
+            <div class="resource-content flexrow flex-center flex-between">
+                <input type="number" name="data.exp.bank3.value" value="{{data.data.exp.bank3.value}}" data-dtype="Number" />
+                /
+                <input type="number" name="data.exp.bank3.max" value="{{data.data.exp.bank3.max}}" data-dtype="Number" />
+            </div>
+        </div>
+    </div>
+    <div class="resource flexrow grid grid-3col" style="min-height: 264px;">
         <div class="flex-group-left">
             <div class="flex-center">
                 <label class="resource-label">{{localize "VTM5E.Notes"}}</label>
@@ -14,6 +40,14 @@
             </div>
             <div class="description-content">
                 {{editor content=data.data.equipment target="data.equipment" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+        <div class="flex-group-left">
+            <div class="flex-center">
+                <label class="resource-label">{{localize "MTA5E.ExpPurchases"}}</label>
+            </div>
+            <div class="description-content">
+                {{editor content=data.data.exp.purchases target="data.exp.purchases" button=true owner=owner editable=editable}}
             </div>
         </div>
     </div>

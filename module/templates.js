@@ -22,8 +22,12 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/mta5e/templates/actor/parts/rouse.html',
     'systems/mta5e/templates/actor/parts/stats.html',
     'systems/mta5e/templates/actor/parts/willpower.html',
+    'systems/mta5e/templates/actor/parts/mage-features.html',
+    'systems/mta5e/templates/actor/parts/mage-options.html',
+    'systems/mta5e/templates/actor/parts/arete.html',
     'systems/mta5e/templates/actor/parts/spheres.html',
     'systems/mta5e/templates/actor/parts/paradox.html',
+    'systems/mta5e/templates/actor/parts/quiet.html',
 
     // Item Sheet Partials
     'systems/mta5e/templates/item/parts/skills.html',

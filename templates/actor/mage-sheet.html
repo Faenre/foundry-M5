@@ -7,15 +7,15 @@
             <div class="grid grid-3col flexrow">
                 <h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
                         placeholder="{{localize 'MTA5E.Name'}}" /></h1>
-                <h1 class="charname"><input name="data.sect.value" type="text" value="{{data.data.sect.value}}"
+                <!--<h1 class="charname"><input name="data.headers.sect" type="text" value="{{data.data.headers.sect}}"
                         placeholder="{{localize 'MTA5E.Sect'}}" /></h1>
                 <h1 class="charname"><input name="data.headers.faction" type="text" value="{{data.data.headers.faction}}"
-                        placeholder="{{localize 'MTA5E.Faction'}}" /></h1>
+                        placeholder="{{localize 'MTA5E.Faction'}}" /></h1>-->
             </div>
             {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
             use both the "grid" and "grid-Ncol" class where "N" can be any number
             from 1 to 12 and will create that number of columns. --}}
-            <div class="resources grid grid-3col">
+            <div class="resources grid grid-2col">
                 {{!-- "flex-group-center" is also defined in the _grid.scss file
                 and it will add a small amount of padding, a border, and will
                 center all of its child elements content and text. --}}
@@ -23,19 +23,14 @@
 
                 {{> "systems/mta5e/templates/actor/parts/willpower.html"}}
 
-                {{> "systems/mta5e/templates/actor/parts/paradox.html"}}
             </div>
             {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
             use both the "grid" and "grid-Ncol" class where "N" can be any number
             from 1 to 12 and will create that number of columns. --}}
-            <div class="resources grid grid-4col">
+            <div class="resources grid grid-2col">
                 {{> "systems/mta5e/templates/actor/parts/exp.html"}}
 
-                {{> "systems/mta5e/templates/actor/parts/hunger.html"}}
-
-                {{> "systems/mta5e/templates/actor/parts/rouse.html"}}
-
-                {{> "systems/mta5e/templates/actor/parts/frenzy.html"}}
+                {{> "systems/mta5e/templates/actor/parts/paradox.html"}}
             </div>
         </div>
     </header>
@@ -45,9 +40,9 @@
         <div class="item" data-tab="stats">{{localize "VTM5E.Stats"}}</div>
         <div class="item" data-tab="spheres">{{localize "MTA5E.Spheres"}}</div>
         <div class="item" data-tab="features">{{localize "VTM5E.Features"}}</div>
-        <div class="item" data-tab="blood">{{localize "VTM5E.Blood"}}</div>
         <div class="item" data-tab="description">{{localize "VTM5E.Description"}}</div>
         <div class="item" data-tab="other">{{localize "VTM5E.Other"}}</div>
+        <div class="item" data-tab="options">{{localize "MTA5E.Options"}}</div>
     </nav>
 
     {{!-- Mage Sheet Body --}}
@@ -67,6 +62,9 @@
 
         {{!-- Other Tab --}}
         {{> "systems/mta5e/templates/actor/parts/other.html"}}
+
+        {{!-- Options Tab --}}
+        {{> "systems/mta5e/templates/actor/parts/mage-options.html"}}
 
     </section>
 </form>

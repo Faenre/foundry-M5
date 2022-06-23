@@ -21,10 +21,10 @@ const diceImages = {
     'critfail'    : '<img src="systems/mta5e/assets/images/bestial-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
   },
   'quiet': {
-    'critsuccess' : '<img src="systems/mta5e/assets/images/mage-messy-crit.png" alt="Hunger Crit" class="roll-img hunger-dice" />',
-    'success'     : '<img src="systems/mta5e/assets/images/mage-messy-success.png" alt="Hunger Success" class="roll-img hunger-dice" />',
-    'fail'        : '<img src="systems/mta5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img hunger-dice" />',
-    'critfail'    : '<img src="systems/mta5e/assets/images/mage-messy-fail.png" alt="Bestial Fail" class="roll-img hunger-dice" />',
+    'critsuccess' : '<img src="systems/mta5e/assets/images/mage-messy-crit.png" alt="Hunger Crit" class="roll-img quiet-dice" />',
+    'success'     : '<img src="systems/mta5e/assets/images/mage-messy-success.png" alt="Hunger Success" class="roll-img quiet-dice" />',
+    'fail'        : '<img src="systems/mta5e/assets/images/red-fail.png" alt="Hunger Fail" class="roll-img quiet-dice" />',
+    'critfail'    : '<img src="systems/mta5e/assets/images/mage-messy-fail.png" alt="Bestial Fail" class="roll-img quiet-dice" />',
   },
 };
 const dieResultTypeMap = {
@@ -48,9 +48,17 @@ const dieResultTypeMap = {
 // useHunger = Will roll hunger dice, if true
 // increaseHunger = Will increase the actor's hunger if no successes are rolled, if true
 // subtractWillpower = Subtracts a point of willpower, always, if true
-export async function rollDice (numDice, actor, label = '', difficulty = 0, useHunger = true, increaseHunger = false, subtractWillpower = false, imageSet='normal', useQuiet = false) {
-  increaseHunger = increaseHunger && game.settings.get('vtm5e', 'automatedRouse');
-  subtractWillpower = subtractWillpower && game.settings.get('vtm5e', 'automatedWillpower');
+export async function rollDice (
+  numDice,
+  actor,
+  label = '',
+  difficulty = 0,
+  opts) {
+  const increaseHunger = opts.increaseHunger && game.settings.get('vtm5e', 'automatedRouse');
+  const subtractWillpower = opts.subtractWillpower && game.settings.get('vtm5e', 'automatedWillpower');
+  const useHunger = opts.useHunger || false;
+  const useQuiet = opts.useQuiet || false;
+  const imageSet = opts.imageSet || 'normal';
 
   // Define special dice
   let blackDice = numDice;

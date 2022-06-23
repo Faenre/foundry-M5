@@ -13,6 +13,7 @@ import { MortalActorSheet } from './actor/mortal-actor-sheet.js'
 import { GhoulActorSheet } from './actor/ghoul-actor-sheet.js'
 import { VampireActorSheet } from './actor/vampire-actor-sheet.js'
 import { MageActorSheet } from './actor/mage-actor-sheet.js'
+// import { MageVampireActorSheet } from './actor/mage-vampire-actor-sheet.js'
 import {
   prepareSearchableSelection,
   prepareRouseShortcut,
@@ -126,6 +127,11 @@ Hooks.once('init', async function () {
     types: ['mage'],
     makeDefault: true
   })
+  // Actors.registerSheet('mta5e', MageVampireActorSheet, {
+  //   label: 'Mage Vampire Sheet',
+  //   types: ['mage' 'vampire'],
+  //   makeDefault: true
+  // })
   Actors.registerSheet('mta5e', CoterieActorSheet, {
     label: 'Coterie Sheet',
     types: ['coterie'],
@@ -291,7 +297,7 @@ Hooks.once('init', async function () {
       matter: 'MTA5E.Matter',
       mind: 'MTA5E.Mind',
       prime: 'MTA5E.Prime',
-      primal: 'MTA5E.PrimalUtility',
+      primalutility: 'MTA5E.PrimalUtility',
       spirit: 'MTA5E.Spirit',
       dimensionalscience: 'MTA5E.DimensionalScience',
       time: 'MTA5E.Time',
