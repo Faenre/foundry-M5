@@ -23,7 +23,7 @@
         <div class="resource flex-group-center">
             <label for="data.data.options.{{key}}.value" class="resource-label">{{localize option.name}}</label>
             <div class="resource-content flexrow flex-center flex-between">
-                <input type="checkbox" name="data.options.{{key}}.value" value="{{option.value}}" data-dtype="Boolean" {{#if option.value}} checked {{/if}}/>
+                <input type="{{option.type}}" name="data.options.{{key}}.value" value="{{option.value}}" data-dtype="{{option.dtype}}" {{#if option.value}} checked {{/if}}/>
             </div>
         </div>
         {{/each}}

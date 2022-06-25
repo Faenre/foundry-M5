@@ -39,6 +39,10 @@ const dieResultTypeMap = {
   2:  'fail',
   1:  'critfail',
 };
+const altDiceStats = {
+  hunger: (actor) => actor.data.data.hunger.value,
+  quiet: (actor) => actor.data.data.quiet.value
+};
 
 // Function to roll dice
 // numDice = Number of dice the function will roll
@@ -53,12 +57,17 @@ export async function rollDice (
   actor,
   label = '',
   difficulty = 0,
-  opts) {
-  const increaseHunger = opts.increaseHunger && game.settings.get('vtm5e', 'automatedRouse');
-  const subtractWillpower = opts.subtractWillpower && game.settings.get('vtm5e', 'automatedWillpower');
+  opts,
+  ) {
+  const increaseHunger = opts.increaseHunger && game.settings.get('mta5e', 'automatedRouse');
+  const subtractWillpower = opts.subtractWillpower && game.settings.get('mta5e', 'automatedWillpower');
   const useHunger = opts.useHunger || false;
   const useQuiet = opts.useQuiet || false;
   const imageSet = opts.imageSet || 'normal';
+
+  opts.altDice = opts.altDice || [];
+  if (opts.useHunger) opts.altDice.push('hunger');
+  if (opts.useQuiet) opts.altDice.push('quiet');
 
   // Define special dice
   let blackDice = numDice;
@@ -221,8 +230,8 @@ function reduceWillpower(actor) {
   // Get the actor's willpower and define it for convenience
   const actorWillpower  = actor.data.data.willpower
   const maxWillpower    = actorWillpower.max
-  const aggrWillpower   = actorWillpower.aggravated
-  const superWillpower  = actorWillpower.superficial
+  let newSuperficial  = actorWillpower.superficial
+  let newAggravated   = actorWillpower.aggravated
 
   // If the willpower boxes are fully ticked with aggravated damage
   // then tell the chat and don't increase any values.
@@ -237,23 +246,20 @@ function reduceWillpower(actor) {
   // If the superficial willpower ticket isn't completely full, then add a point
   if ((superWillpower + aggrWillpower) < maxWillpower) {
     // If there are still superficial willpower boxes to tick, add it here
-
-    // Define the new number of superficial willpower damage
-    const newWillpower = superWillpower + 1
-
-    // Update the actor sheet
-    actor.update({ 'data.willpower.superficial': newWillpower })
+    newSuperficial += 1
   } else {
     // If there aren't any superficial boxes left, add an aggravated one
 
     // Define the new number of aggravated willpower damage
     // Superficial damage needs to be subtracted by 1 each time
     // a point of aggravated is added
-    const newSuperWillpower = superWillpower - 1
-    const newAggrWillpower  = aggrWillpower + 1
-
-    // Update the actor sheet
-    actor.update({ 'data.willpower.superficial':  newSuperWillpower })
-    actor.update({ 'data.willpower.aggravated':   newAggrWillpower })
+    newSuperficial -= 1
+    newAggravated += 1
   }
+
+  // Update the actor sheet
+  actor.update({
+    'data.willpower.superficial':  newSuperficial,
+    'data.willpower.aggravated':   newAggravated
+  })
 }

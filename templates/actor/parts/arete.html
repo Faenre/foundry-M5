@@ -6,6 +6,9 @@
         {{localize "MTA5E.Arete"}}
     {{/if}}</label>
     <div class="resource-value" data-value="{{data.data.avatar.arete}}" data-name="data.avatar.arete">
+        {{#unless locked}}
+        <span class="resource-value-empty"></span>
+        {{/unless}}
         {{#numLoop 10}}
         <span class="resource-value-step" data-index="{{this}}"></span>
         {{/numLoop}}

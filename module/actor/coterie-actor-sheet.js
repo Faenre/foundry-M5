@@ -9,7 +9,7 @@ export class CoterieActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['mta5e', 'sheet', 'actor', 'coterie']
+    const classList = ['mta5e', 'vtm5e', 'sheet', 'actor', 'coterie']
 
     // If the user's enabled darkmode, then push it to the class list
     if (game.settings.get('mta5e', 'darkTheme')) {

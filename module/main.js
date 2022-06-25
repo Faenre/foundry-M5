@@ -252,8 +252,9 @@ Hooks.once('init', async function () {
 
   Handlebars.registerHelper('numLoop', function (num, options) {
     let ret = ''
+    num = parseInt(num, 10) || 0;
 
-    for (let i = 0, j = num; i < j; i++) {
+    for (let i = 0; i < num; i++) {
       ret = ret + options.fn(i)
     }
 

@@ -8,10 +8,10 @@ export class VampireItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions () {
     // Define the base list of CSS classes
-    const classList = ['vtm5e', 'sheet', 'item']
+    const classList = ['mta5e', 'sheet', 'item']
 
     // If the user's enabled darkmode, then push it to the class list
-    if (game.settings.get('vtm5e', 'darkTheme')) { // eslint-disable-line
+    if (game.settings.get('mta5e', 'darkTheme')) { // eslint-disable-line
       classList.push('dark-theme')
     }
 
@@ -29,7 +29,7 @@ export class VampireItemSheet extends ItemSheet {
 
   /** @override */
   get template () {
-    const path = 'systems/vtm5e/templates/item'
+    const path = 'systems/mta5e/templates/item'
     // Return a single sheet for all item types.
     // return `${path}/item-sheet.html`;
 

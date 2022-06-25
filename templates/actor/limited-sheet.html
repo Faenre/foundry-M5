@@ -7,7 +7,7 @@
         <h2 class="limited-charname">{{actor.name}}</h2>
     </header>
     {{!-- Sheet Body --}}
-    <section class="sheet-body">
+    <main class="sheet-body">
         <div class="tab appearance description-content">
             {{#if isCharacter}}
             {{editor content=data.data.appearance target="data.appearance" button=true owner=owner editable=editable}}
@@ -15,5 +15,5 @@
             {{editor content=data.data.biography target="data.biography" button=true owner=owner editable=editable}}
             {{/if}}
         </div>
-    </section>
+    </main>
 </form>

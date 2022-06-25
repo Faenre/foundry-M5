@@ -7,10 +7,6 @@
             <div class="grid grid-3col flexrow">
                 <h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
                         placeholder="{{localize 'MTA5E.Name'}}" /></h1>
-                <!--<h1 class="charname"><input name="data.headers.sect" type="text" value="{{data.data.headers.sect}}"
-                        placeholder="{{localize 'MTA5E.Sect'}}" /></h1>
-                <h1 class="charname"><input name="data.headers.faction" type="text" value="{{data.data.headers.faction}}"
-                        placeholder="{{localize 'MTA5E.Faction'}}" /></h1>-->
             </div>
             {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
             use both the "grid" and "grid-Ncol" class where "N" can be any number
@@ -21,17 +17,15 @@
                 center all of its child elements content and text. --}}
                 {{> "systems/mta5e/templates/actor/parts/health.html"}}
 
+                {{> "systems/mta5e/templates/actor/parts/paradox.html"}}
+
                 {{> "systems/mta5e/templates/actor/parts/willpower.html"}}
 
+                {{> "systems/mta5e/templates/actor/parts/ongoing-spells.html"}}
             </div>
             {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
             use both the "grid" and "grid-Ncol" class where "N" can be any number
             from 1 to 12 and will create that number of columns. --}}
-            <div class="resources grid grid-2col">
-                {{> "systems/mta5e/templates/actor/parts/exp.html"}}
-
-                {{> "systems/mta5e/templates/actor/parts/paradox.html"}}
-            </div>
         </div>
     </header>
 
@@ -46,25 +40,25 @@
     </nav>
 
     {{!-- Mage Sheet Body --}}
-    <section class="sheet-body">
+    <main class="sheet-body">
 
         {{!-- Stats Tab --}}
-        {{> "systems/mta5e/templates/actor/parts/stats.html"}}
+        {{> "systems/mta5e/templates/actor/parts/tab-stats.html"}}
 
         {{!-- Owned Powers Tab --}}
-        {{> "systems/mta5e/templates/actor/parts/spheres.html"}}
+        {{> "systems/mta5e/templates/actor/parts/tab-spheres.html"}}
 
         {{!-- Owned Features Tab --}}
-        {{> "systems/mta5e/templates/actor/parts/mage-features.html"}}
+        {{> "systems/mta5e/templates/actor/parts/tab-mage-features.html"}}
 
         {{!-- Biography Tab --}}
-        {{> "systems/mta5e/templates/actor/parts/biography.html"}}
+        {{> "systems/mta5e/templates/actor/parts/tab-biography.html"}}
 
         {{!-- Other Tab --}}
-        {{> "systems/mta5e/templates/actor/parts/other.html"}}
+        {{> "systems/mta5e/templates/actor/parts/tab-other.html"}}
 
         {{!-- Options Tab --}}
-        {{> "systems/mta5e/templates/actor/parts/mage-options.html"}}
+        {{> "systems/mta5e/templates/actor/parts/tab-options.html"}}
 
-    </section>
+    </main>
 </form>

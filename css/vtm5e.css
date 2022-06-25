@@ -1206,15 +1206,16 @@
 }
 
 /* Resource boxe Vitality CSS */
-.ma20th .resource-counter .resource-vitality-step {
+.ma20th .resource-counter .healthbox {
   height: 14px;
   width: 14px;
   border: 1px solid black;
   display: inline-block;
   cursor: pointer;
+  background-color: ;
 }
 
-.ma20th .resource-counter .resource-vitality-step[data-state="-"] {
+.ma20th .resource-counter .healthbox[data-state="-"] {
   background:
     linear-gradient(
       135deg,
@@ -1227,7 +1228,7 @@
     );
 }
 
-.ma20th .resource-counter .resource-vitality-step[data-state="/"] {
+.ma20th .resource-counter .healthbox[data-state="/"] {
   background:
     linear-gradient(
       45deg,
@@ -1249,7 +1250,7 @@
     );
 }
 
-.ma20th .resource-counter .resource-vitality-step[data-state="x"] {
+.ma20th .resource-counter .healthbox[data-state="x"] {
   background:
     linear-gradient(
       45deg,

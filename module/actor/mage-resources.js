@@ -185,7 +185,7 @@ export function _onSquare2cfCounterChange (event) {
     'data.magika.quintessence': totalQ,
     'data.magika.paradox': totalP
   })
-  console.log('actor updated with:', totalQ, totalP);
+  // console.log('actor updated with:', totalQ, totalP);
 }
 
 export function _onDotCounterChange (event) {

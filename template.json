@@ -24,6 +24,26 @@
           "faction": "",
           "sect": ""
         },
+        "options": {
+          "technocracy": {
+            "value": false,
+            "type": "checkbox",
+            "dtype": "Boolean",
+            "name": "MTA5E.IsTechnocrat"
+          },
+          "hunger": {
+            "value": false,
+            "type": "checkbox",
+            "dtype": "Boolean",
+            "name": "MTA5E.HasHungerMechanic"
+          },
+          "attributes": {
+            "value": 5,
+            "type": "number",
+            "dtype": "Number",
+            "name": "MTA5E.MaxAttributes"
+          }
+        },
         "exp": {
           "value": 0,
           "max": 0,
@@ -203,6 +223,12 @@
             "value": 0,
             "name": "VTM5E.Technology"
           }
+        },
+        "hunger": {
+          "value": 0
+        },
+        "quiet": {
+          "value": 0
         }
       },
       "disciplines": {
@@ -380,9 +406,11 @@
           }
         },
         "options": {
-          "technocracy": {
-            "value": false,
-            "name": "MTA5E.IsTechnocrat"
+          "ongoingspells": {
+            "value": 2,
+            "type": "number",
+            "dtype": "Number",
+            "name": "MTA5E.OngoingSpellStepSize"
           }
         },
         "quiet": {
@@ -391,7 +419,8 @@
         "magika": {
           "quintessence": 0,
           "paradox": 0,
-          "permparadox": 0
+          "permparadox": 0,
+          "ongoingspells": 0
         },
         "avatar": {
           "arete": 0,

@@ -202,6 +202,8 @@ export class MortalActorSheet extends CoterieActorSheet {
     const element = event.currentTarget
     const dataset = element.dataset
     const useHunger = this.hunger && (dataset.useHunger === '1')
+    const useQuiet = this.hunger && (dataset.useQuiet === '1')
+    const imageSet = dataset.imgSet || this.imageSet
     const increaseHunger = dataset.increaseHunger
     const subtractWillpower = dataset.subtractWillpower
     const numDice = dataset.roll
@@ -211,8 +213,8 @@ export class MortalActorSheet extends CoterieActorSheet {
         useHunger: useHunger,
         increaseHunger: increaseHunger,
         subtractWillpower: subtractWillpower,
-        useQuiet: this.useQuiet,
-        imageSet: this.imageSet
+        useQuiet: useQuiet,
+        imageSet: imageSet
       });
   }
 
@@ -344,16 +346,25 @@ export class MortalActorSheet extends CoterieActorSheet {
       const data = this.dataset
       const states = parseCounterStates(data.states)
       const humanity = data.name === 'data.humanity'
+      const health = data.name === 'data.health';
 
       const fulls = Number(data[states['-']]) || 0
       const halfs = Number(data[states['/']]) || 0
       const crossed = Number(data[states.x]) || 0
 
-      const values = humanity ? new Array(fulls + halfs) : new Array(halfs + crossed)
+      // const values = humanity ? new Array(fulls + halfs) : new Array(halfs + crossed)
+      let values = new Array(halfs + crossed)
+      if (humanity) values = new Array(fulls + halfs)
+      if (health) values = new Array(fulls)
+
 
       if (humanity) {
         values.fill('-', 0, fulls)
         values.fill('/', fulls, fulls + halfs)
+      } else if (health) {
+        values.fill('-', 0, fulls);
+        values.fill('/', fulls - halfs - crossed, fulls - crossed);
+        values.fill('x', fulls - crossed, fulls);
       } else {
         values.fill('/', 0, halfs)
         values.fill('x', halfs, halfs + crossed)
