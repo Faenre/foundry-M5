@@ -150,7 +150,7 @@ export class MageActorSheet extends MortalActorSheet {
     const template = `
       <form>
           <div class="form-group">
-              <label>${game.i18n.localize('MTA5E.CustomRollLabel')}</label>
+              <label>${game.i18n.localize('MTA5E.CustomRoll')}</label>
               <input type="text" id="inputLabel" value="${dataset.label}">
           </div>
           <div class="form-group">
@@ -161,10 +161,10 @@ export class MageActorSheet extends MortalActorSheet {
               <label>${game.i18n.localize('VTM5E.Difficulty')}</label>
               <input type="text" min="0" id="inputDif" value="0">
           </div>
-          <div class="form-group">
+          <!--<div class="form-group">
               <label>${game.i18n.localize('MTA5E.UseMessyDice')}</label>
               <input type="checkbox" id="inputMessyDice" checked>
-          </div>
+          </div>-->
       </form>`
 
     let buttons = {}
@@ -179,11 +179,11 @@ export class MageActorSheet extends MortalActorSheet {
           const areteVal = this.actor.data.data.avatar.arete
           const areteName = game.i18n.localize('MTA5E.' + areteText)
           const numDice = areteVal + parseInt(dataset.roll) + modifier
-          const useMessyDice = html.find('#inputMessyDice')[0].checked
+          // const useMessyDice = html.find('#inputMessyDice')[0].checked
           rollDice(numDice, this.actor, label, difficulty,
           {
-            useHunger: useMessyDice && this.hunger,
-            useQuiet: useMessyDice && this.quiet,
+            useHunger: this.hunger,
+            useQuiet: this.quiet,
             imageSet: this.imageSet
             });
         }
