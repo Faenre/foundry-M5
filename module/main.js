@@ -527,6 +527,7 @@ function rerollDie (roll) {
       useHunger: false,
       useQuiet: false,
       subtractWillpower: true,
+      imgSet: 'mage',
     })
   }
 }

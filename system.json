@@ -2,7 +2,7 @@
   "name": "mta5e",
   "title": "Mage the Ascension 5e",
   "description": "Mage 5e system for Foundry VTT!",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "minimumCoreVersion": "9.0",
   "compatibleCoreVersion": "9.0",
   "templateVersion": 4,
