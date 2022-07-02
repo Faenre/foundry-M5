@@ -17,8 +17,9 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+        <div class="tab resource flexrow grid grid-2col" data-group="primary" data-tab="description" style="min-height: 264px;">
+            {{editor content=data.data.description target="data.description" owner=owner editable=true button=true}}
+
         </div>
 
         {{!-- Attributes Tab --}}

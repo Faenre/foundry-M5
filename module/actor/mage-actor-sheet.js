@@ -150,12 +150,20 @@ export class MageActorSheet extends MortalActorSheet {
     const template = `
       <form>
           <div class="form-group">
+              <label>${game.i18n.localize('MTA5E.CustomRollLabel')}</label>
+              <input type="text" id="inputLabel" value="${dataset.label}">
+          </div>
+          <div class="form-group">
               <label>${game.i18n.localize('VTM5E.Modifier')}</label>
-              <input type="text" id="inputMod" value="${defaultModifier}">
+              <input type="text" id="inputMod" value="0">
           </div>
           <div class="form-group">
               <label>${game.i18n.localize('VTM5E.Difficulty')}</label>
-              <input type="text" min="0" id="inputDif" value="${defaultDifficulty}">
+              <input type="text" min="0" id="inputDif" value="0">
+          </div>
+          <div class="form-group">
+              <label>${game.i18n.localize('MTA5E.UseMessyDice')}</label>
+              <input type="checkbox" id="inputMessyDice" checked>
           </div>
       </form>`
 
@@ -165,15 +173,17 @@ export class MageActorSheet extends MortalActorSheet {
         icon: '<i class="fas fa-check"></i>',
         label: game.i18n.localize('VTM5E.Roll'),
         callback: async (html) => {
+          const label = html.find('#inputLabel')[0].value
           const modifier = parseInt(html.find('#inputMod')[0].value || 0)
           const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
           const areteVal = this.actor.data.data.avatar.arete
           const areteName = game.i18n.localize('MTA5E.' + areteText)
           const numDice = areteVal + parseInt(dataset.roll) + modifier
-          rollDice(numDice, this.actor, `${dataset.label} + ${areteName}`, difficulty,
+          const useMessyDice = html.find('#inputMessyDice')[0].checked
+          rollDice(numDice, this.actor, label, difficulty,
           {
-            useHunger: this.hunger,
-            useQuiet: this.quiet,
+            useHunger: useMessyDice && this.hunger,
+            useQuiet: useMessyDice && this.quiet,
             imageSet: this.imageSet
             });
         }

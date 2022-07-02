@@ -94,6 +94,10 @@ export async function rollDice (
   await roll.evaluate();
   const results = ([0, 2, 4].map((i) => roll.terms[i].results));
 
+  // Automatically track willpower damage as a result of willpower rerolls
+  if (subtractWillpower)
+    if (!reduceWillpower(actor, roll)) return;
+
   // Variable defining
   let success = 0;
   let hungerSuccess = 0;
@@ -181,13 +185,10 @@ export async function rollDice (
   });
 
   // Automatically add hunger to the actor on a failure (for rouse checks)
-  if (increaseHunger) {
-    let failure = (totalSuccess <= difficulty);
-    incrementHunger(actor, roll, failure);
+  const failure = (totalSuccess <= difficulty);
+  if (increaseHunger && failure) {
+    incrementHunger(actor, roll);
   }
-
-  // Automatically track willpower damage as a result of willpower rerolls
-  if (subtractWillpower) reduceWillpower(actor);
 }
 
 function resultsToImages(type, dice) {
@@ -203,35 +204,33 @@ function resultsToImages(type, dice) {
   return string;
 }
 
-function incrementHunger(actor, roll, failure) {
+function incrementHunger(actor, roll) {
   // Check if the roll failed (matters for discipline
   // power-based rouse checks that roll 2 dice instead of 1)
-  if (failure) {
-    const actorHunger = actor.data.data.hunger.value
+  const actorHunger = actor.data.data.hunger.value
 
-    // If hunger is greater than 4 (5, or somehow higher)
-    // then display that in the chat and don't increase hunger
-    if (actorHunger > 4) {
-      roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: actor }),
-        content: game.i18n.localize('VTM5E.HungerFull')
-      })
-    } else {
-      // Define the new number of hunger points
-      const newHunger = actor.data.data.hunger.value + 1
+  // If hunger is greater than 4 (5, or somehow higher)
+  // then display that in the chat and don't increase hunger
+  if (actorHunger > 4) {
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+      content: game.i18n.localize('VTM5E.HungerFull')
+    })
+  } else {
+    // Define the new number of hunger points
+    const newHunger = actor.data.data.hunger.value + 1
 
-      // Push it to the actor's sheet
-      actor.update({ 'data.hunger.value': newHunger })
-    }
+    // Push it to the actor's sheet
+    actor.update({ 'data.hunger.value': newHunger })
   }
 }
 
-function reduceWillpower(actor) {
+function reduceWillpower(actor, roll) {
   // Get the actor's willpower and define it for convenience
   const actorWillpower  = actor.data.data.willpower
   const maxWillpower    = actorWillpower.max
-  let newSuperficial  = actorWillpower.superficial
-  let newAggravated   = actorWillpower.aggravated
+  let superWillpower  = actorWillpower.superficial
+  let aggrWillpower   = actorWillpower.aggravated
 
   // If the willpower boxes are fully ticked with aggravated damage
   // then tell the chat and don't increase any values.
@@ -240,26 +239,28 @@ function reduceWillpower(actor) {
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       content: game.i18n.localize('VTM5E.WillpowerFull')
     })
-    return
+    return false
   }
 
   // If the superficial willpower ticket isn't completely full, then add a point
   if ((superWillpower + aggrWillpower) < maxWillpower) {
     // If there are still superficial willpower boxes to tick, add it here
-    newSuperficial += 1
+    superWillpower += 1
   } else {
     // If there aren't any superficial boxes left, add an aggravated one
 
     // Define the new number of aggravated willpower damage
     // Superficial damage needs to be subtracted by 1 each time
     // a point of aggravated is added
-    newSuperficial -= 1
-    newAggravated += 1
+    superWillpower -= 1
+    aggrWillpower += 1
   }
 
   // Update the actor sheet
   actor.update({
-    'data.willpower.superficial':  newSuperficial,
-    'data.willpower.aggravated':   newAggravated
+    'data.willpower.superficial':  superWillpower,
+    'data.willpower.aggravated':   aggrWillpower
   })
+
+  return true
 }

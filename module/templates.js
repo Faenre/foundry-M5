@@ -10,6 +10,7 @@ export const preloadHandlebarsTemplates = async function () {
     // Actor Sheet Partials
     'systems/mta5e/templates/actor/parts/arete.html',
     'systems/mta5e/templates/actor/parts/exp.html',
+    'systems/mta5e/templates/actor/parts/custom-roll.html',
     'systems/mta5e/templates/actor/parts/frenzy.html',
     'systems/mta5e/templates/actor/parts/health.html',
     'systems/mta5e/templates/actor/parts/humanity.html',

@@ -200,7 +200,7 @@
   "MTA5E.Quintessence": "Quintessence",
   "MTA5E.Quint": "Quint",
   "MTA5E.Paradox": "Paradox",
-  "MTA5E.PermanentParadox": "Perm. Paradox",
+  "MTA5E.PermanentParadox": "Permanent Paradox",
   "MTA5E.ParadoxBacklash": "Paradox Backlash",
   "MTA5E.ParadoxRisk": "Paradox Risk",
   "MTA5E.OngoingSpells": "Ongoing Spells",
@@ -241,5 +241,8 @@
   "MTA5E.IsTechnocrat": "Use Technocracy labels?",
   "MTA5E.HasHungerMechanic": "Vampiric hunger enabled?",
   "MTA5E.MaxAttributes": "Maximum attribute dots",
+  "MTA5E.RollLabel": "Roll Label",
+  "MTA5E.CustomRoll": "Custom Roll",
+  "MTA5E.UseMessyDice": "Use messy dice?",
   "MTA5E.MageVampire": "Mage-Vampire"
 }

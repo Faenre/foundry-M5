@@ -522,7 +522,12 @@ function rerollDie (roll) {
 
   // If there is at least 1 die selected and aren't any more than 3 die selected, reroll the total number of die and generate a new message.
   if ((diceSelected > 0) && (diceSelected < 4)) {
-    rollDice(diceSelected, speaker, game.i18n.localize('VTM5E.WillpowerReroll'), 0, false, false, true)
+    rollDice(diceSelected, speaker, game.i18n.localize('VTM5E.WillpowerReroll'), 0, {
+      increaseHunger: false,
+      useHunger: false,
+      useQuiet: false,
+      subtractWillpower: true,
+    })
   }
 }
 

@@ -144,6 +144,10 @@ export class MortalActorSheet extends CoterieActorSheet {
     const template = `
       <form>
           <div class="form-group">
+              <label>${game.i18n.localize('MTA5E.RollLabel')}</label>
+              <input type="text" id="inputLabel" value="${dataset.label}">
+          </div>
+          <div class="form-group">
               <label>${game.i18n.localize('VTM5E.SelectAbility')}</label>
               <select id="abilitySelect">${options}</select>
           </div>  
@@ -163,13 +167,14 @@ export class MortalActorSheet extends CoterieActorSheet {
         icon: '<i class="fas fa-check"></i>',
         label: game.i18n.localize('VTM5E.Roll'),
         callback: async (html) => {
+          const label = html.find('#inputLabel')[0].value
           const ability = html.find('#abilitySelect')[0].value
           const modifier = parseInt(html.find('#inputMod')[0].value || 0)
           const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
           const abilityVal = this.actor.data.data.abilities[ability].value
           const abilityName = game.i18n.localize(this.actor.data.data.abilities[ability].name)
           const numDice = abilityVal + parseInt(dataset.roll) + modifier
-          rollDice(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty,
+          rollDice(numDice, this.actor, label, difficulty,
           {
             useHunger: this.hunger,
             useQuiet: this.quiet,
@@ -222,19 +227,28 @@ export class MortalActorSheet extends CoterieActorSheet {
     event.preventDefault()
     const element = event.currentTarget
     const dataset = element.dataset
-    const useHunger = this.hunger && (dataset.useHunger === '1')
+    const useHunger = this.hunger && (dataset.useHunger !== '0')
+    const useQuiet = this.quiet && (dataset.useQuiet !== '0')
     const increaseHunger = dataset.increaseHunger
     const subtractWillpower = dataset.subtractWillpower
 
     const template = `
       <form>
           <div class="form-group">
+              <label>${game.i18n.localize('MTA5E.RollLabel')}</label>
+              <input type="text" id="inputLabel" value="${dataset.label}">
+          </div>
+          <div class="form-group">
               <label>${game.i18n.localize('VTM5E.Modifier')}</label>
               <input type="text" id="inputMod" value="0">
-          </div>  
+          </div>
           <div class="form-group">
               <label>${game.i18n.localize('VTM5E.Difficulty')}</label>
               <input type="text" min="0" id="inputDif" value="0">
+          </div>
+          <div class="form-group">
+              <label>${game.i18n.localize('MTA5E.UseMessyDice')}</label>
+              <input type="checkbox" id="inputMessyDice" checked>
           </div>
       </form>`
 
@@ -244,12 +258,15 @@ export class MortalActorSheet extends CoterieActorSheet {
         icon: '<i class="fas fa-check"></i>',
         label: game.i18n.localize('VTM5E.Roll'),
         callback: async (html) => {
+          const label = html.find('#inputLabel')[0].value
           const modifier = parseInt(html.find('#inputMod')[0].value || 0)
           const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
-          const numDice = parseInt(dataset.roll) + modifier
-          rollDice(numDice, this.actor, `${dataset.label}`, difficulty,
+          const numDice = parseInt(dataset.roll || 0) + modifier
+          const useMessyDice = html.find('#inputMessyDice')[0].checked
+          rollDice(numDice, this.actor, label, difficulty,
             {
-              useHunger: useHunger,
+              useHunger: useMessyDice && useHunger,
+              useQuiet: useMessyDice && useQuiet,
               increaseHunger: increaseHunger,
               subtractWillpower: subtractWillpower,
               imageSet: this.imageSet
