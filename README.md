@@ -1,20 +1,24 @@
-# Vampire the Masquerade 5e System
+# Mage: the Ascension 5e System
 
-[![Foundry Shield 9]][Foundry URL]
+[![Foundry Shield 10]][Foundry URL]
 [![MIT License]][MIT URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
-This system is for playing Mage: the Ascension 5th edition on the Foundry Virtual Tabletop System.
+This system is for playing Mage: the Ascension 5th edition on the Foundry Virtual Tabletop System. 
+
+The ruleset is not official, but is a derivation of the M20 setting and content mixed with a "V5-like" rule adaptation. The rules were put together by [EnterElysium](https://www.patreon.com/EnterElysium), and are played out in their Youtube channels, [Roll4It](https://www.youtube.com/watch?v=GrgHWdN6BIk) and [EnterElysium](https://www.youtube.com/watch?v=RfDE7QoITe4&list=PLR5ZBfGW6e1m_-26kz65g9hTNtZm1Uxzm). This is an implementation of their rules, but since their rules are only available to patreon members, I'll respect that and simply point towards their resources.
+
+They made awesome rules! Go support them!
 
 Licensed MtA materials will NOT be provided as this is a system provided for public use for free.
 
-There is integration with Dice So Nice! To roll regular vampire dice, roll `1dv`. To roll Hunger dice, roll `1dh`. Replace the 1s with however many dice you want to roll for each type.
-
 ## Feedback
+
+This code is maintained by Nicole, reachable on discord at Faenre#3434
 
 Bugs reported as issues to this repository are greatly appreciate.
 
-Please reach out to me at weinerdolphin#3175 on Discord with issues, feature requests, etc.
+For the original V:TM code, check the main branch, https://github.com/Rayji96/foundry-V5
 
 Please check the issues list before suggesting new features. :smiley:
 
