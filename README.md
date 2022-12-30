@@ -4,13 +4,15 @@
 [![MIT License]][MIT URL]
 [![GitHub Super-Linter]][Super-Linter URL]
 
-This system is for playing Mage: the Ascension 5th edition on the Foundry Virtual Tabletop System. 
+This system is for playing EnterElysium's _Mage: the Ascension_ fan-made 5th edition hack on the Foundry Virtual Tabletop System. 
 
-The ruleset is not official, but is a derivation of the M20 setting and content mixed with a "V5-like" rule adaptation. The rules were put together by [EnterElysium](https://www.patreon.com/EnterElysium), and are played out in their Youtube channels, [Roll4It](https://www.youtube.com/watch?v=GrgHWdN6BIk) and [EnterElysium](https://www.youtube.com/watch?v=RfDE7QoITe4&list=PLR5ZBfGW6e1m_-26kz65g9hTNtZm1Uxzm). This is an implementation of their rules, but since their rules are only available to patreon members, I'll respect that and simply point towards their resources.
+The ruleset is not official, but is a derivation of the M20 setting and content mixed with a "V5-like" rule adaptation. The rules were put together by [EnterElysium](https://www.patreon.com/EnterElysium), and are played out in their Youtube channels, [Roll4It](https://www.youtube.com/watch?v=GrgHWdN6BIk) and [EnterElysium](https://www.youtube.com/watch?v=RfDE7QoITe4&list=PLR5ZBfGW6e1m_-26kz65g9hTNtZm1Uxzm). 
 
-They made awesome rules! Go support them!
+This is an implementation of [EE's rules](https://www.patreon.com/posts/mage-rules-and-54925826), with a couple of new adjustments from our campaign: Technocratic spheres can be accessed in the Options pane of a Mage character, and Mage-Vampire hybrids can exist too, also available in the Options pane. Also, some skills were adjusted to account for things like Hypertech and Pilot. If you don't like the skills, you can adjust them in the `template.json`.
 
-Licensed MtA materials will NOT be provided as this is a system provided for public use for free.
+Roll4It/EE made awesome rules! And awesome Let's Plays! Go support them!
+
+Licensed MtA/VtM/WoD materials will NOT be provided as this is a system provided for public use for free.
 
 ## Feedback
 
